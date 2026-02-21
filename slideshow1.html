@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>معرض صور فخم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: #0a0a0a; /* خلفية سوداء عميقة للفخامة */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* حاوية الصور */
+        .slider-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            /* انتقال ناعم جداً (Fade) */
+            transition: opacity 1.2s ease-in-out, transform 2s ease;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+            transform: scale(1.05); /* تأثير زووم خفيف جداً */
+        }
+
+        /* أزرار التحكم الزجاجية */
+        .nav-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .nav-control:active { transform: translateY(-50%) scale(0.9); }
+        .prev-btn { right: auto; left: 20px; }
+        .next-btn { left: auto; right: 20px; }
+
+        /* شريط أيقونات التواصل الاجتماعي مع تأثير التوهج */
+        .social-bar {
+            height: 80px;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            border-top: 1px solid #222;
+        }
+
+        .social-icon {
+            font-size: 22px;
+            color: #666;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        /* تأثير النيون عند اللمس أو الهوفر */
+        .social-icon:hover, .social-icon:active {
+            transform: translateY(-8px);
+            color: var(--glow-clr);
+            text-shadow: 0 0 15px var(--glow-clr), 0 0 30px var(--glow-clr);
+        }
+
+        /* تعريف ألوان النيون */
+        .fb { --glow-clr: #1877F2; }
+        .inst { --glow-clr: #E4405F; }
+        .yt { --glow-clr: #ff0000; }
+        .gh { --glow-clr: #ffffff; }
+        .tw { --glow-clr: #1DA1F2; }
+
+        .counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: white;
+            background: rgba(0,0,0,0.4);
+            padding: 4px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container" id="slider">
+        <div class="counter" id="slide-num">01 / 20</div>
+        
+        <div class="nav-control prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+        <div class="nav-control next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+
+        <div id="slides-wrapper">
+            </div>
+    </div>
+
+    <div class="social-bar">
+        <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon inst"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon yt"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-icon tw"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-icon gh"><i class="fab fa-github"></i></a>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById('slides-wrapper');
+        const counter = document.getElementById('slide-num');
+        let current = 0;
+        const total = 20;
+
+        // إنشاء الصور
+        for(let i=0; i<total; i++) {
+            const div = document.createElement('div');
+            div.className = `slide ${i === 0 ? 'active' : ''}`;
+            // استخدام صور طبيعية عالية الجودة
+            div.style.backgroundImage = `url('https://picsum.photos/id/${i + 15}/1080/1920')`;
+            wrapper.appendChild(div);
+        }
+
+        function changeSlide(dir) {
+            const slides = document.querySelectorAll('.slide');
+            slides[current].classList.remove('active');
+            
+            current = (current + dir + total) % total;
+            
+            slides[current].classList.add('active');
+            counter.innerText = `${(current + 1).toString().padStart(2, '0')} / ${total}`;
+        }
+
+        // دعم السحب باللمس للجوال (Swipe)
+        let startX = 0;
+        document.getElementById('slider').addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        document.getElementById('slider').addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) changeSlide(1);
+            if (endX - startX > 50) changeSlide(-1);
+        });
+
+        // تشغيل تلقائي ناعم
+        setInterval(() => changeSlide(1), 6000);
+    </script>
+</body>
+</html>
