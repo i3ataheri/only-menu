@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منوی فاب ۵ تایی - مرکز پایین</title>
+    <title>منوی فاب فشرده</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -74,23 +74,23 @@
             opacity: 1;
         }
 
-        /* توزيع 5 أيقونات على شكل قوس متناسق للأعلى */
-        .fab-wrapper:hover .fab-menu li:nth-child(1) { transform: translate(-130px, -20px); } 
-        .fab-wrapper:hover .fab-menu li:nth-child(2) { transform: translate(-90px, -100px); }
-        .fab-wrapper:hover .fab-menu li:nth-child(3) { transform: translate(0, -135px); }
-        .fab-wrapper:hover .fab-menu li:nth-child(4) { transform: translate(90px, -100px); }
-        .fab-wrapper:hover .fab-menu li:nth-child(5) { transform: translate(130px, -20px); }
+        /* تقليل المسافات (المسافة من المركز أصبحت أقل) */
+        .fab-wrapper:hover .fab-menu li:nth-child(1) { transform: translate(-90px, -15px); } 
+        .fab-wrapper:hover .fab-menu li:nth-child(2) { transform: translate(-65px, -75px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(3) { transform: translate(0, -95px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(4) { transform: translate(65px, -75px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(5) { transform: translate(90px, -15px); }
 
         .fab-menu li a {
-            width: 55px;
-            height: 55px;
+            width: 50px; /* تصغير حجم الأيقونات قليلاً لتناسب المسافة الجديدة */
+            height: 50px;
             background: #ffffff; /* أبيض ناصع */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #333;
-            font-size: 20px;
+            font-size: 18px;
             text-decoration: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             position: relative;
@@ -122,9 +122,9 @@
         /* تعريف الألوان */
         .facebook { --clr: #1877F2; }
         .x-twitter { --clr: #000000; }
+        .github { --clr: #333333; }
         .instagram { --clr: #E4405F; }
         .youtube { --clr: #ff0000; }
-        .github { --clr: #333333; } /* لون جيت هاب */
 
     </style>
 </head>
