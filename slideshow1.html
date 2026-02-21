@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>معرض صور ثابت واحترافي</title>
+    <title>معرض صور فخم - أيقونات داكنة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -36,13 +36,11 @@
             width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            /* تم تقليل وقت الانتقال وجعله فورياً للصورة الأولى */
             opacity: 0;
             transition: opacity 0.5s ease-in-out; 
             z-index: 1;
         }
 
-        /* الصورة النشطة تظهر فوراً وبدون تأثير زووم */
         .slide.active {
             opacity: 1;
             z-index: 2;
@@ -108,7 +106,7 @@
             height: 65px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            color: white;
+            color: #000; /* تغيير لون الزائد إلى الأسود */
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -145,16 +143,16 @@
         .fab-item {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
             font-size: 20px;
-            color: #fff;
+            color: #000; /* تغيير لون أيقونات التواصل إلى الأسود */
             transition: 0.3s;
         }
 
@@ -203,6 +201,7 @@
 
         function changeSlide(dir) {
             const slides = document.querySelectorAll('.slide');
+            if(slides.length === 0) return;
             slides[current].classList.remove('active');
             current = (current + dir + total) % total;
             slides[current].classList.add('active');
@@ -220,8 +219,6 @@
             if (startX - endX > 50) changeSlide(1);
             if (endX - startX > 50) changeSlide(-1);
         });
-
-        // تم حذف setInterval لتعطيل التشغيل التلقائي
     </script>
 </body>
 </html>
