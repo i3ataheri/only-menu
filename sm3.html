@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی Liquid Flow - روشن</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* اللون الجديد: رمادي فاتح جداً وناعم */
+            background: #f0f2f5; 
+        }
+
+        .menu {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            /* تغيير لون الأيقونة الافتراضي ليكون داكناً ليظهر على الخلفية الفاتحة */
+            color: #333; 
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: 0.5s;
+        }
+
+        .menu a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--clr); /* لون متغير لكل أيقونة */
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* انيميشن سائل */
+            z-index: -1;
+        }
+
+        .menu a:hover::before {
+            transform: scale(1);
+        }
+
+        .menu a i {
+            transition: 0.5s;
+        }
+
+        /* تأثير انيميشن الأيقونة عند التمرير */
+        .menu a:hover i {
+            transform: scale(1.2) rotate(360deg);
+            color: #fff; /* اللون يصبح أبيض عند ظهور الدائرة الملونة */
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        /* الألوان الخاصة لكل أيقونة */
+        .facebook { --clr: #1877F2; } /* أزرق فيسبوك */
+        .x-twitter { --clr: #000000; } /* أسود إكس */
+        .instagram { --clr: #E4405F; } /* وردي إنستغرام */
+        .github { --clr: #24292e; } /* أسود جيت هاب */
+        .youtube { --clr: #CD201F; } /* أحمر يوتيوب */
+
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <a href="#" class="facebook" style="--clr: #1877F2;"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="x-twitter" style="--clr: #000000;"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="instagram" style="--clr: #e1306c;"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="github" style="--clr: #5200ff;"><i class="fab fa-github"></i></a>
+        <a href="#" class="youtube" style="--clr: #ff0000;"><i class="fab fa-youtube"></i></a>
+    </div>
+
+</body>
+</html>
