@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی فاب نیم‌دایره‌ای - پایین مرکز</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* خلفية رمادية هادئة تبرز الأزرار */
+            background: #e9ecef; 
+        }
+
+        .fab-wrapper {
+            position: fixed;
+            bottom: 50px; /* المسافة من الأسفل */
+            left: 50%; /* التحريك لمنتصف الشاشة */
+            transform: translateX(-50%); /* موازنة الزر في المركز تماماً */
+        }
+
+        /* الزر الرئيسي المتحرك */
+        .main-btn {
+            width: 70px;
+            height: 70px;
+            background: #6c5ce7; /* بنفسجي فاتح */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+            transition: 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fab-wrapper:hover .main-btn {
+            transform: rotate(135deg);
+            background: #ff7675; /* يتغير للون الوردي عند الفتح */
+        }
+
+        /* قائمة الأيقونات الدائرية */
+        .fab-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            list-style: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fab-menu li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* توزيع الأيقونات على شكل نصف دائرة عند التمرير */
+        .fab-wrapper:hover .fab-menu li {
+            opacity: 1;
+        }
+
+        /* تحريك كل أيقونة بزاوية مختلفة للأعلى (قوس) */
+        .fab-wrapper:hover .fab-menu li:nth-child(1) { transform: translate(-110px, -40px); } 
+        .fab-wrapper:hover .fab-menu li:nth-child(2) { transform: translate(-50px, -110px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(3) { transform: translate(50px, -110px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(4) { transform: translate(110px, -40px); }
+
+        .fab-menu li a {
+            width: 55px;
+            height: 55px;
+            background: #ffffff; /* أبيض ناصع */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير سائل ملون عند الهوفر على الأيقونات الصغيرة */
+        .fab-menu li a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--clr);
+            transform: translateY(100%);
+            transition: 0.3s;
+            z-index: -1;
+        }
+
+        .fab-menu li a:hover::before {
+            transform: translateY(0);
+        }
+
+        .fab-menu li a:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* الألوان */
+        .facebook { --clr: #1877F2; }
+        .x-twitter { --clr: #000000; }
+        .instagram { --clr: #E4405F; }
+        .youtube { --clr: #ff0000; }
+
+    </style>
+</head>
+<body>
+
+    <div class="fab-wrapper">
+        <div class="main-btn">
+            <i class="fas fa-plus"></i>
+        </div>
+
+        <ul class="fab-menu">
+            <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="x-twitter"><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
