@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>معرض صور فخم - مونوكروم</title>
+    <title>معرض صور ثابت واحترافي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -22,6 +22,7 @@
             overflow: hidden;
         }
 
+        /* حاوية السلايدر */
         .slider-container {
             position: absolute;
             top: 0; left: 0;
@@ -35,13 +36,16 @@
             width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
+            /* تم تقليل وقت الانتقال وجعله فورياً للصورة الأولى */
             opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 3s ease;
+            transition: opacity 0.5s ease-in-out; 
+            z-index: 1;
         }
 
+        /* الصورة النشطة تظهر فوراً وبدون تأثير زووم */
         .slide.active {
             opacity: 1;
-            transform: scale(1.08);
+            z-index: 2;
         }
 
         .counter {
@@ -59,7 +63,35 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* ======= FAB بتصميم مونوكروم (لون موحد) ======= */
+        /* أزرار التحكم الجانبية */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(0.9);
+        }
+
+        .prev-slide { left: 15px; }
+        .next-slide { right: 15px; }
+
+        /* ======= FAB القائمة العائمة ======= */
         .fab-wrapper {
             position: fixed;
             bottom: 25px;
@@ -74,7 +106,7 @@
         .fab-main {
             width: 65px;
             height: 65px;
-            background: rgba(255, 255, 255, 0.2); /* زجاجي أبيض */
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             color: white;
             border-radius: 50%;
@@ -85,7 +117,7 @@
             cursor: pointer;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .fab-wrapper.active .fab-main {
@@ -110,34 +142,32 @@
             transform: translateY(0);
         }
 
-        /* أيقونات بلون موحد (أبيض زجاجي) */
         .fab-item {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
             font-size: 20px;
-            color: #fff; /* لون موحد لجميع الأيقونات */
+            color: #fff;
             transition: 0.3s;
         }
 
-        .fab-item:active {
-            background: #fff;
-            color: #000;
-            transform: scale(1.1);
-        }
+        .fab-item:active { background: #fff; color: #000; }
 
     </style>
 </head>
 <body>
 
     <div class="counter" id="slide-num">01 / 20</div>
+
+    <div class="nav-btn prev-slide" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+    <div class="nav-btn next-slide" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
 
     <div class="slider-container" id="slider">
         <div id="slides-wrapper"></div>
@@ -147,7 +177,6 @@
         <button class="fab-main" onclick="toggleMenu()">
             <i class="fas fa-plus"></i>
         </button>
-        
         <div class="fab-list">
             <a href="#" class="fab-item"><i class="fab fa-discord"></i></a>
             <a href="#" class="fab-item"><i class="fab fa-pinterest"></i></a>
@@ -168,13 +197,12 @@
         for(let i=0; i<total; i++) {
             const div = document.createElement('div');
             div.className = `slide ${i === 0 ? 'active' : ''}`;
-            div.style.backgroundImage = `url('https://picsum.photos/id/${i + 35}/1080/1920')`;
+            div.style.backgroundImage = `url('https://picsum.photos/id/${i + 45}/1080/1920')`;
             wrapper.appendChild(div);
         }
 
         function changeSlide(dir) {
             const slides = document.querySelectorAll('.slide');
-            if(slides.length === 0) return;
             slides[current].classList.remove('active');
             current = (current + dir + total) % total;
             slides[current].classList.add('active');
@@ -193,7 +221,7 @@
             if (endX - startX > 50) changeSlide(-1);
         });
 
-        setInterval(() => changeSlide(1), 6000);
+        // تم حذف setInterval لتعطيل التشغيل التلقائي
     </script>
 </body>
 </html>
