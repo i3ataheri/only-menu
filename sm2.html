@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی مدرن و ناز</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* خلفية داكنة لإبراز الألوان */
+            background: #0d0d0d; 
+        }
+
+        .menu-container {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu-container a {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05); /* أبيض شفاف */
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 26px;
+            color: #fff;
+            transition: 0.5s;
+            overflow: hidden;
+            /* حد رفيع زجاجي */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* تأثير التوهج عند التمرير (Hover Effects) */
+        .menu-container a:hover {
+            transform: translateY(-15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px var(--clr); /* توهج ملون */
+            color: var(--clr);
+        }
+
+        /* خلفية ملونة تتحرك من الأسفل */
+        .menu-container a::before {
+            content: '';
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--clr);
+            filter: blur(20px);
+            transition: 0.5s;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .menu-container a:hover::before {
+            bottom: 0;
+            opacity: 0.2;
+        }
+
+        /* تعریف الألوان لكل أيقونة باستخدام Variable */
+        .facebook { --clr: #1877F2; } /* أزرق فيسبوك */
+        .x-twitter { --clr: #ffffff; } /* أبيض ناصع */
+        .instagram { --clr: #ff0050; } /* وردي فاقع */
+        .github { --clr: #00ff00; } /* أخضر نيون */
+        .youtube { --clr: #ff0000; } /* أحمر ناري */
+
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <a href="#" class="facebook" style="--clr: #1877F2;"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="x-twitter" style="--clr: #ffffff;"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="instagram" style="--clr: #e1306c;"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="github" style="--clr: #00d2ff;"><i class="fab fa-github"></i></a>
+        <a href="#" class="youtube" style="--clr: #ff0000;"><i class="fab fa-youtube"></i></a>
+    </div>
+
+</body>
+</html>
