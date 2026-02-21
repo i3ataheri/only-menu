@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>معرض صور فخم</title>
+    <title>معرض صور فخم - مونوكروم</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -17,168 +17,182 @@
         }
 
         body {
-            background: #0a0a0a; /* خلفية سوداء عميقة للفخامة */
+            background: #000;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
         }
 
-        /* حاوية الصور */
         .slider-container {
-            flex: 1;
-            position: relative;
-            width: 100%;
-            overflow: hidden;
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
         }
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
             opacity: 0;
-            /* انتقال ناعم جداً (Fade) */
-            transition: opacity 1.2s ease-in-out, transform 2s ease;
-            z-index: 1;
+            transition: opacity 1.5s ease-in-out, transform 3s ease;
         }
 
         .slide.active {
             opacity: 1;
-            z-index: 2;
-            transform: scale(1.05); /* تأثير زووم خفيف جداً */
+            transform: scale(1.08);
         }
-
-        /* أزرار التحكم الزجاجية */
-        .nav-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .nav-control:active { transform: translateY(-50%) scale(0.9); }
-        .prev-btn { right: auto; left: 20px; }
-        .next-btn { left: auto; right: 20px; }
-
-        /* شريط أيقونات التواصل الاجتماعي مع تأثير التوهج */
-        .social-bar {
-            height: 80px;
-            background: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            border-top: 1px solid #222;
-        }
-
-        .social-icon {
-            font-size: 22px;
-            color: #666;
-            text-decoration: none;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        /* تأثير النيون عند اللمس أو الهوفر */
-        .social-icon:hover, .social-icon:active {
-            transform: translateY(-8px);
-            color: var(--glow-clr);
-            text-shadow: 0 0 15px var(--glow-clr), 0 0 30px var(--glow-clr);
-        }
-
-        /* تعريف ألوان النيون */
-        .fb { --glow-clr: #1877F2; }
-        .inst { --glow-clr: #E4405F; }
-        .yt { --glow-clr: #ff0000; }
-        .gh { --glow-clr: #ffffff; }
-        .tw { --glow-clr: #1DA1F2; }
 
         .counter {
             position: absolute;
-            bottom: 30px;
+            top: 25px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             color: white;
-            background: rgba(0,0,0,0.4);
-            padding: 4px 20px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 5px 25px;
+            border-radius: 30px;
             font-size: 14px;
-            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
+
+        /* ======= FAB بتصميم مونوكروم (لون موحد) ======= */
+        .fab-wrapper {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fab-main {
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.2); /* زجاجي أبيض */
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .fab-wrapper.active .fab-main {
+            transform: rotate(45deg);
+            background: #fff;
+            color: #000;
+        }
+
+        .fab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(30px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .fab-wrapper.active .fab-list {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* أيقونات بلون موحد (أبيض زجاجي) */
+        .fab-item {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 20px;
+            color: #fff; /* لون موحد لجميع الأيقونات */
+            transition: 0.3s;
+        }
+
+        .fab-item:active {
+            background: #fff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="slider-container" id="slider">
-        <div class="counter" id="slide-num">01 / 20</div>
-        
-        <div class="nav-control prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
-        <div class="nav-control next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+    <div class="counter" id="slide-num">01 / 20</div>
 
-        <div id="slides-wrapper">
-            </div>
+    <div class="slider-container" id="slider">
+        <div id="slides-wrapper"></div>
     </div>
 
-    <div class="social-bar">
-        <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-icon inst"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-icon yt"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="social-icon tw"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="social-icon gh"><i class="fab fa-github"></i></a>
+    <div class="fab-wrapper" id="fabMenu">
+        <button class="fab-main" onclick="toggleMenu()">
+            <i class="fas fa-plus"></i>
+        </button>
+        
+        <div class="fab-list">
+            <a href="#" class="fab-item"><i class="fab fa-discord"></i></a>
+            <a href="#" class="fab-item"><i class="fab fa-pinterest"></i></a>
+            <a href="#" class="fab-item"><i class="fab fa-snapchat"></i></a>
+            <a href="#" class="fab-item"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="fab-item"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="fab-item"><i class="fab fa-instagram"></i></a>
+        </div>
     </div>
 
     <script>
         const wrapper = document.getElementById('slides-wrapper');
         const counter = document.getElementById('slide-num');
+        const fab = document.getElementById('fabMenu');
         let current = 0;
         const total = 20;
 
-        // إنشاء الصور
         for(let i=0; i<total; i++) {
             const div = document.createElement('div');
             div.className = `slide ${i === 0 ? 'active' : ''}`;
-            // استخدام صور طبيعية عالية الجودة
-            div.style.backgroundImage = `url('https://picsum.photos/id/${i + 15}/1080/1920')`;
+            div.style.backgroundImage = `url('https://picsum.photos/id/${i + 35}/1080/1920')`;
             wrapper.appendChild(div);
         }
 
         function changeSlide(dir) {
             const slides = document.querySelectorAll('.slide');
+            if(slides.length === 0) return;
             slides[current].classList.remove('active');
-            
             current = (current + dir + total) % total;
-            
             slides[current].classList.add('active');
             counter.innerText = `${(current + 1).toString().padStart(2, '0')} / ${total}`;
         }
 
-        // دعم السحب باللمس للجوال (Swipe)
+        function toggleMenu() {
+            fab.classList.toggle('active');
+        }
+
         let startX = 0;
-        document.getElementById('slider').addEventListener('touchstart', e => startX = e.touches[0].clientX);
-        document.getElementById('slider').addEventListener('touchend', e => {
+        document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
             let endX = e.changedTouches[0].clientX;
             if (startX - endX > 50) changeSlide(1);
             if (endX - startX > 50) changeSlide(-1);
         });
 
-        // تشغيل تلقائي ناعم
         setInterval(() => changeSlide(1), 6000);
     </script>
 </body>
