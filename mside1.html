@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة الكبسولة الذكية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* استخدام خط كايـرو الرائع */
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: #e0e5ec;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* حاوية العناصر على جهة اليمين */
+        .capsule-menu {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+            padding-right: 10px;
+        }
+
+        /* تصميم الكبسولة الزجاجية الفاخرة */
+        .capsule-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            /* الحالة العادية: كبسولة مغلقة */
+            width: 55px;
+            transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* تمدد الكبسولة عند مرور الماوس */
+        .capsule-item:hover {
+            width: 190px; /* عرض أكبر ليتناسب مع الخط العربي */
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: -10px 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* دائرة الأيقونة */
+        .icon-wrapper {
+            min-width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #444;
+            transition: 0.4s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .capsule-item:hover .icon-wrapper {
+            background: var(--bg-clr);
+            color: #fff;
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        /* النص العربي الأنيق */
+        .label {
+            margin-right: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            opacity: 0;
+            white-space: nowrap;
+            transition: 0.3s ease;
+            transition-delay: 0.15s;
+        }
+
+        .capsule-item:hover .label {
+            opacity: 1;
+        }
+
+        /* تعريف الألوان الخاصة */
+        .home    { --bg-clr: #6c5ce7; } /* بنفسجي */
+        .service { --bg-clr: #00cec9; } /* تركواز */
+        .gallery { --bg-clr: #fd79a8; } /* وردي */
+        .contact { --bg-clr: #ff7675; } /* مرجاني */
+
+    </style>
+</head>
+<body>
+
+    <div class="capsule-menu">
+        <a href="#" class="capsule-item home">
+            <div class="icon-wrapper"><i class="fas fa-home"></i></div>
+            <span class="label">الصفحة الرئيسية</span>
+        </a>
+
+        <a href="#" class="capsule-item service">
+            <div class="icon-wrapper"><i class="fas fa-layer-group"></i></div>
+            <span class="label">خدماتنا المميزة</span>
+        </a>
+
+        <a href="#" class="capsule-item gallery">
+            <div class="icon-wrapper"><i class="fas fa-camera-retro"></i></div>
+            <span class="label">معرض الصور</span>
+        </a>
+
+        <a href="#" class="capsule-item contact">
+            <div class="icon-wrapper"><i class="fas fa-headset"></i></div>
+            <span class="label">اتصل بنا الآن</span>
+        </a>
+    </div>
+
+</body>
+</html>
