@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آیکون‌های مدرن شبکه‌های اجتماعی</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* إعدادات الخلفية والخط */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* خلفية متدرجة حديثة */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* أرجواني ملكي متدرج */
+        }
+
+        .wrapper {
+            display: inline-flex;
+            list-style: none;
+        }
+
+        .wrapper .icon {
+            position: relative;
+            background: #ffffff; /* اللون الأبيض الأساسي */
+            border-radius: 50%;
+            padding: 15px;
+            margin: 10px;
+            width: 60px;
+            height: 60px;
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* إعدادات تلميح الأداة (Tooltip) */
+        .wrapper .tooltip {
+            position: absolute;
+            top: 0;
+            font-size: 14px;
+            background: #ffffff; /* أبيض */
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* المثلث الصغير تحت التلميح */
+        .wrapper .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: inherit;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .wrapper .icon:hover .tooltip {
+            top: -55px;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* الألوان عند التمرير (Hover) لكل أيقونة */
+        
+        /* فيسبوك */
+        .facebook:hover,
+        .facebook:hover .tooltip,
+        .facebook:hover .tooltip::before {
+            background: #1877F2; /* أزرق ملكي */
+            color: #ffffff;
+        }
+
+        /* إكس (تويتر سابقاً) */
+        .x-twitter:hover,
+        .x-twitter:hover .tooltip,
+        .x-twitter:hover .tooltip::before {
+            background: #000000; /* أسود قاتم */
+            color: #ffffff;
+        }
+
+        /* إنستغرام */
+        .instagram:hover,
+        .instagram:hover .tooltip,
+        .instagram:hover .tooltip::before {
+            background: #E4405F; /* وردي غامق */
+            color: #ffffff;
+        }
+
+        /* جيت هاب */
+        .github:hover,
+        .github:hover .tooltip,
+        .github:hover .tooltip::before {
+            background: #333333; /* أسود فحم */
+            color: #ffffff;
+        }
+
+        /* يوتيوب */
+        .youtube:hover,
+        .youtube:hover .tooltip,
+        .youtube:hover .tooltip::before {
+            background: #CD201F; /* أحمر ناري */
+            color: #ffffff;
+        }
+
+        /* لون الأيقونة الافتراضي */
+        .wrapper .icon i {
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .wrapper .icon:hover i {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="wrapper">
+        <li class="icon facebook">
+            <span class="tooltip">Facebook</span>
+            <span><i class="fab fa-facebook-f"></i></span>
+        </li>
+        <li class="icon x-twitter">
+            <span class="tooltip">X</span>
+            <span><i class="fa-brands fa-x-twitter"></i></span>
+        </li>
+        <li class="icon instagram">
+            <span class="tooltip">Instagram</span>
+            <span><i class="fab fa-instagram"></i></span>
+        </li>
+        <li class="icon github">
+            <span class="tooltip">Github</span>
+            <span><i class="fab fa-github"></i></span>
+        </li>
+        <li class="icon youtube">
+            <span class="tooltip">Youtube</span>
+            <span><i class="fab fa-youtube"></i></span>
+        </li>
+    </ul>
+
+</body>
+</html>
