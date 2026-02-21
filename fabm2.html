@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منوی فاب نیم‌دایره‌ای - پایین مرکز</title>
+    <title>منوی فاب ۵ تایی - مرکز پایین</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -17,18 +17,18 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* خلفية رمادية هادئة تبرز الأزرار */
+            /* خلفية رمادية هادئة */
             background: #e9ecef; 
         }
 
         .fab-wrapper {
             position: fixed;
-            bottom: 50px; /* المسافة من الأسفل */
-            left: 50%; /* التحريك لمنتصف الشاشة */
-            transform: translateX(-50%); /* موازنة الزر في المركز تماماً */
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* الزر الرئيسي المتحرك */
+        /* الزر الرئيسي (علامة الزائد) */
         .main-btn {
             width: 70px;
             height: 70px;
@@ -43,15 +43,15 @@
             box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
             transition: 0.5s ease;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         .fab-wrapper:hover .main-btn {
             transform: rotate(135deg);
-            background: #ff7675; /* يتغير للون الوردي عند الفتح */
+            background: #ff7675; /* وردي عند الفتح */
         }
 
-        /* قائمة الأيقونات الدائرية */
+        /* قائمة الأيقونات */
         .fab-menu {
             position: absolute;
             top: 0;
@@ -70,16 +70,16 @@
             z-index: 1;
         }
 
-        /* توزيع الأيقونات على شكل نصف دائرة عند التمرير */
         .fab-wrapper:hover .fab-menu li {
             opacity: 1;
         }
 
-        /* تحريك كل أيقونة بزاوية مختلفة للأعلى (قوس) */
-        .fab-wrapper:hover .fab-menu li:nth-child(1) { transform: translate(-110px, -40px); } 
-        .fab-wrapper:hover .fab-menu li:nth-child(2) { transform: translate(-50px, -110px); }
-        .fab-wrapper:hover .fab-menu li:nth-child(3) { transform: translate(50px, -110px); }
-        .fab-wrapper:hover .fab-menu li:nth-child(4) { transform: translate(110px, -40px); }
+        /* توزيع 5 أيقونات على شكل قوس متناسق للأعلى */
+        .fab-wrapper:hover .fab-menu li:nth-child(1) { transform: translate(-130px, -20px); } 
+        .fab-wrapper:hover .fab-menu li:nth-child(2) { transform: translate(-90px, -100px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(3) { transform: translate(0, -135px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(4) { transform: translate(90px, -100px); }
+        .fab-wrapper:hover .fab-menu li:nth-child(5) { transform: translate(130px, -20px); }
 
         .fab-menu li a {
             width: 55px;
@@ -93,12 +93,12 @@
             font-size: 20px;
             text-decoration: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
             position: relative;
             overflow: hidden;
+            transition: 0.3s;
         }
 
-        /* تأثير سائل ملون عند الهوفر على الأيقونات الصغيرة */
+        /* تأثير السائل الملون (Liquid Flow) */
         .fab-menu li a::before {
             content: '';
             position: absolute;
@@ -119,11 +119,12 @@
             transform: scale(1.1);
         }
 
-        /* الألوان */
+        /* تعريف الألوان */
         .facebook { --clr: #1877F2; }
         .x-twitter { --clr: #000000; }
         .instagram { --clr: #E4405F; }
         .youtube { --clr: #ff0000; }
+        .github { --clr: #333333; } /* لون جيت هاب */
 
     </style>
 </head>
@@ -137,6 +138,7 @@
         <ul class="fab-menu">
             <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
             <li class="x-twitter"><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li class="github"><a href="#"><i class="fab fa-github"></i></a></li>
             <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
             <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
         </ul>
