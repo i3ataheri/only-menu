@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی سه‌بعدی ایزومتریک</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --الأسود: #365; 
+            --الأخضر: #BCD9A2; 
+            --الأبيض: #FEFFD3; 
+            --الأحمر: #A82323; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--الأسود);
+        }
+
+        ul {
+            position: relative;
+            transform: skewY(-15deg); /* زاویه دادن سه‌بعدی به کل منو */
+            display: flex;
+            flex-direction: column;
+        }
+
+        ul li {
+            position: relative;
+            list-style: none;
+            width: 150px;
+            background: #3e3f46;
+            padding: 15px;
+            transition: 0.5s;
+            z-index: calc(1 * var(--i));
+        }
+
+        /* افکت جابجایی سه‌بعدی هنگام هاور */
+        ul li:hover {
+            transform: translateX(40px);
+            background: var(--الأحمر);
+        }
+
+        /* ایجاد لبه‌های کناری برای حس حجم (سایه چپ) */
+        ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40px;
+            width: 40px;
+            height: 100%;
+            background: #2e3133;
+            transform-origin: right;
+            transform: skewY(45deg);
+            transition: 0.5s;
+        }
+
+        ul li:hover::before {
+            background: #861d1d; /* رنگ تیره‌تر قرمز برای لبه */
+        }
+
+        /* ایجاد لبه بالایی برای حس حجم */
+        ul li::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #35383e;
+            transform-origin: bottom;
+            transform: skewX(45deg);
+            transition: 0.5s;
+        }
+
+        ul li:hover::after {
+            background: var(--الأحمر);
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+        }
+
+        ul li:hover a {
+            color: var(--الأبيض);
+        }
+
+        ul li a .icon {
+            font-size: 1.5em;
+        }
+
+        ul li a span {
+            font-size: 1em;
+        }
+
+        /* افکت سایه زیرین برای کل منو */
+        ul li:last-child {
+            box-shadow: -120px 120px 20px rgba(0,0,0,0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li style="--i:5;">
+            <a href="#">
+                <ion-icon name="home-outline" class="icon"></ion-icon>
+                <span>خانه</span>
+            </a>
+        </li>
+        <li style="--i:4;">
+            <a href="#">
+                <ion-icon name="person-outline" class="icon"></ion-icon>
+                <span>پروفایل</span>
+            </a>
+        </li>
+        <li style="--i:3;">
+            <a href="#">
+                <ion-icon name="chatbubble-outline" class="icon"></ion-icon>
+                <span>پیام‌ها</span>
+            </a>
+        </li>
+        <li style="--i:2;">
+            <a href="#">
+                <ion-icon name="camera-outline" class="icon"></ion-icon>
+                <span>گالری</span>
+            </a>
+        </li>
+        <li style="--i:1;">
+            <a href="#">
+                <ion-icon name="settings-outline" class="icon"></ion-icon>
+                <span>تنظیمات</span>
+            </a>
+        </li>
+    </ul>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
