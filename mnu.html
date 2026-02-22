@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی جادویی با فونت وزیر</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --الأسود: #EC8F8D; 
+            --الأخضر: #F4F0E4; 
+            --الأبيض: #F4F0E4; 
+            --الأحمر: #537D96; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* اعمال فونت وزیر به تمام المان‌ها */
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--الأسود);
+        }
+
+        .navigation {
+            position: relative;
+            width: 400px;
+            height: 70px;
+            background: var(--الأحمر);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            direction: ltr; 
+        }
+
+        .navigation ul {
+            display: flex;
+            width: 350px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation ul li {
+            position: relative;
+            list-style: none;
+            width: 70px;
+            height: 70px;
+            z-index: 1;
+        }
+
+        .navigation ul li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            font-size: 1.5em;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--الأبيض);
+            z-index: 1;
+        }
+
+        .navigation ul li.active a .icon {
+            transform: translateY(-32px);
+            color: var(--الأحمر); 
+        }
+
+        .navigation ul li a .text {
+            position: absolute;
+            color: var(--الأبيض);
+            font-weight: 500;
+            font-size: 0.85em; /* کمی بزرگتر برای فونت فارسی */
+            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .navigation ul li.active a .text {
+            opacity: 1;
+            transform: translateY(18px);
+        }
+
+        .indicator {
+            position: absolute;
+            top: -50%;
+            width: 70px;
+            height: 70px;
+            background: var(--الأخضر);
+            border-radius: 50%;
+            border: 6px solid var(--الأسود);
+            transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -22px;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border-top-right-radius: 20px;
+            box-shadow: 1px -10px 0 0 var(--الأسود);
+        }
+
+        .indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -22px;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border-top-left-radius: 20px;
+            box-shadow: -1px -10px 0 0 var(--الأسود);
+        }
+
+        .navigation ul li:nth-child(1).active ~ .indicator { transform: translateX(calc(70px * 0)); }
+        .navigation ul li:nth-child(2).active ~ .indicator { transform: translateX(calc(70px * 1)); }
+        .navigation ul li:nth-child(3).active ~ .indicator { transform: translateX(calc(70px * 2)); }
+        .navigation ul li:nth-child(4).active ~ .indicator { transform: translateX(calc(70px * 3)); }
+        .navigation ul li:nth-child(5).active ~ .indicator { transform: translateX(calc(70px * 4)); }
+    </style>
+</head>
+<body>
+
+    <div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="text">خانه</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="text">پروفایل</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                    <span class="text">پیام‌ها</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
+                    <span class="text">گالری</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                    <span class="text">تنظیمات</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('mouseenter', activeLink));
+    </script>
+</body>
+</html>
