@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منوی دایره‌ای ۷ تایی</title>
+    <title>منوی دایره‌ای ۷ تایی فیکس شده</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,17 +34,17 @@
 
         .menu {
             position: relative;
-            width: 250px; /* کمی بزرگتر برای فضای بیشتر ۷ آیکون */
-            height: 250px;
+            width: 300px;
+            height: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .toggle {
-            position: relative;
-            width: 65px;
-            height: 65px;
+            position: absolute; /* تغییر به absolute برای استقرار دقیق در مرکز */
+            width: 70px;
+            height: 70px;
             background: var(--الأحمر);
             display: flex;
             justify-content: center;
@@ -53,9 +53,9 @@
             font-size: 2.2em;
             cursor: pointer;
             border-radius: 50%;
-            z-index: 10;
+            z-index: 100;
             transition: transform 1.25s, background 0.5s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .menu:hover .toggle {
@@ -67,32 +67,34 @@
         .menu li {
             position: absolute;
             list-style: none;
-            left: 92px; /* تنظیم موقعیت مرکزی برای ۷ آیکون */
-            transform-origin: 32px; 
+            /* تراز کردن دقیق li ها در مرکز مطلق دایره */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: 0.5s;
             transition-delay: calc(0.08s * var(--i));
             transform: rotate(0deg) translateX(0px);
         }
 
-        /* تقسیم ۳۶۰ درجه بر ۷ آیتم */
+        /* جادوی باز شدن منظم: هر آیتم با زاویه خودش به بیرون پرتاب می‌شود */
         .menu:hover li {
-            transform: rotate(calc(360deg / 7 * var(--i))) translateX(100px);
+            transform: rotate(calc(360deg / 7 * var(--i))) translateX(120px);
         }
 
         .menu li a {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             background: var(--الأبيض);
             color: var(--الأحمر);
             border-radius: 50%;
-            font-size: 1.3em;
-            /* خنثی کردن چرخش والد برای عمودی ماندن آیکون */
+            font-size: 1.4em;
+            /* خنثی کردن چرخش والد برای اینکه آیکون‌ها کج نشوند */
             transform: rotate(calc(360deg / -7 * var(--i)));
             transition: 0.5s;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
             text-decoration: none;
         }
 
@@ -113,12 +115,12 @@
             pointer-events: none;
             transition: 0.3s;
             white-space: nowrap;
-            bottom: -30px;
+            top: 100%; /* قرارگیری متن دقیقاً زیر آیکون */
+            margin-top: 10px;
         }
 
         .menu li a:hover span {
             opacity: 1;
-            bottom: -35px;
         }
     </style>
 </head>
@@ -127,27 +129,13 @@
     <div class="menu">
         <div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
         
-        <li style="--i:0;">
-            <a href="#"><ion-icon name="home-outline"></ion-icon><span>خانه</span></a>
-        </li>
-        <li style="--i:1;">
-            <a href="#"><ion-icon name="person-outline"></ion-icon><span>پروفایل</span></a>
-        </li>
-        <li style="--i:2;">
-            <a href="#"><ion-icon name="chatbubble-outline"></ion-icon><span>پیام</span></a>
-        </li>
-        <li style="--i:3;">
-            <a href="#"><ion-icon name="camera-outline"></ion-icon><span>گالری</span></a>
-        </li>
-        <li style="--i:4;">
-            <a href="#"><ion-icon name="videocam-outline"></ion-icon><span>ویدیو</span></a>
-        </li>
-        <li style="--i:5;">
-            <a href="#"><ion-icon name="heart-outline"></ion-icon><span>علاقه‌مندی</span></a>
-        </li>
-        <li style="--i:6;">
-            <a href="#"><ion-icon name="settings-outline"></ion-icon><span>تنظیمات</span></a>
-        </li>
+        <li style="--i:0;"><a href="#"><ion-icon name="home-outline"></ion-icon><span>خانه</span></a></li>
+        <li style="--i:1;"><a href="#"><ion-icon name="person-outline"></ion-icon><span>پروفایل</span></a></li>
+        <li style="--i:2;"><a href="#"><ion-icon name="chatbubble-outline"></ion-icon><span>پیام</span></a></li>
+        <li style="--i:3;"><a href="#"><ion-icon name="camera-outline"></ion-icon><span>گالری</span></a></li>
+        <li style="--i:4;"><a href="#"><ion-icon name="videocam-outline"></ion-icon><span>ویدیو</span></a></li>
+        <li style="--i:5;"><a href="#"><ion-icon name="heart-outline"></ion-icon><span>علاقه‌مندی</span></a></li>
+        <li style="--i:6;"><a href="#"><ion-icon name="settings-outline"></ion-icon><span>تنظیمات</span></a></li>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
