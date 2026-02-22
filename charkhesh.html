@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی دایره‌ای ۷ تایی</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --الأسود: #458B73; 
+            --الأخضر: #BCD9A2; 
+            --الأبيض: #FEFFD3; 
+            --الأحمر: #A82323; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--الأسود);
+        }
+
+        .menu {
+            position: relative;
+            width: 250px; /* کمی بزرگتر برای فضای بیشتر ۷ آیکون */
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toggle {
+            position: relative;
+            width: 65px;
+            height: 65px;
+            background: var(--الأحمر);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--الأبيض);
+            font-size: 2.2em;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: transform 1.25s, background 0.5s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .menu:hover .toggle {
+            transform: rotate(315deg);
+            background: var(--الأخضر);
+            color: var(--الأحمر);
+        }
+
+        .menu li {
+            position: absolute;
+            list-style: none;
+            left: 92px; /* تنظیم موقعیت مرکزی برای ۷ آیکون */
+            transform-origin: 32px; 
+            transition: 0.5s;
+            transition-delay: calc(0.08s * var(--i));
+            transform: rotate(0deg) translateX(0px);
+        }
+
+        /* تقسیم ۳۶۰ درجه بر ۷ آیتم */
+        .menu:hover li {
+            transform: rotate(calc(360deg / 7 * var(--i))) translateX(100px);
+        }
+
+        .menu li a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: var(--الأبيض);
+            color: var(--الأحمر);
+            border-radius: 50%;
+            font-size: 1.3em;
+            /* خنثی کردن چرخش والد برای عمودی ماندن آیکون */
+            transform: rotate(calc(360deg / -7 * var(--i)));
+            transition: 0.5s;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .menu li a:hover {
+            background: var(--الأخضر);
+            color: var(--الأسود);
+            transform: rotate(calc(360deg / -7 * var(--i))) scale(1.2);
+        }
+
+        .menu li a span {
+            position: absolute;
+            font-size: 0.75em;
+            background: var(--الأحمر);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            white-space: nowrap;
+            bottom: -30px;
+        }
+
+        .menu li a:hover span {
+            opacity: 1;
+            bottom: -35px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
+        
+        <li style="--i:0;">
+            <a href="#"><ion-icon name="home-outline"></ion-icon><span>خانه</span></a>
+        </li>
+        <li style="--i:1;">
+            <a href="#"><ion-icon name="person-outline"></ion-icon><span>پروفایل</span></a>
+        </li>
+        <li style="--i:2;">
+            <a href="#"><ion-icon name="chatbubble-outline"></ion-icon><span>پیام</span></a>
+        </li>
+        <li style="--i:3;">
+            <a href="#"><ion-icon name="camera-outline"></ion-icon><span>گالری</span></a>
+        </li>
+        <li style="--i:4;">
+            <a href="#"><ion-icon name="videocam-outline"></ion-icon><span>ویدیو</span></a>
+        </li>
+        <li style="--i:5;">
+            <a href="#"><ion-icon name="heart-outline"></ion-icon><span>علاقه‌مندی</span></a>
+        </li>
+        <li style="--i:6;">
+            <a href="#"><ion-icon name="settings-outline"></ion-icon><span>تنظیمات</span></a>
+        </li>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
