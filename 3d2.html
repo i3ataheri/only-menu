@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی مکعبی سه‌بعدی</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --الأسود: #1a1a1a; 
+            --الأخضر: #BCD9A2; 
+            --الأبيض: #FEFFD3; 
+            --الأحمر: #A82323; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--الأسود);
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        ul li {
+            list-style: none;
+            perspective: 500px; /* ایجاد عمق برای چرخش */
+        }
+
+        ul li a {
+            position: relative;
+            display: block;
+            width: 180px;
+            height: 50px;
+            text-decoration: none;
+            /* فعال‌سازی فضای سه‌بعدی */
+            transform-style: preserve-3d;
+            transition: 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        /* انیمیشن چرخش حول محور X */
+        ul li a:hover {
+            transform: rotateX(90deg);
+        }
+
+        /* وجه اول (جلویی) */
+        ul li a span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #333;
+            color: var(--الأبيض);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateZ(25px); /* جلو آوردن وجه */
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        /* وجه دوم (بالایی که بعد از چرخش دیده می‌شود) */
+        ul li a::after {
+            content: attr(data-text); /* گرفتن متن از HTML */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--الأحمر);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* چرخاندن و بالا بردن وجه دوم */
+            transform: rotateX(-90deg) translateZ(25px); 
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        /* افکت درخشش زیر منو هنگام هاور */
+        ul li a:hover span {
+            box-shadow: 0 0 20px var(--الأحمر);
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li><a href="#" data-text="ورود به خانه"><span>خانه</span></a></li>
+        <li><a href="#" data-text="مشاهده پروفایل"><span>پروفایل</span></a></li>
+        <li><a href="#" data-text="ارسال پیام"><span>پیام‌ها</span></a></li>
+        <li><a href="#" data-text="تصاویر جدید"><span>گالری</span></a></li>
+        <li><a href="#" data-text="مدیریت حساب"><span>تنظیمات</span></a></li>
+    </ul>
+
+</body>
+</html>
